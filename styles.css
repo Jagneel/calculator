@@ -1,0 +1,23 @@
+.display {
+    height: 100px;
+    background-color: black;
+    color: white;
+}
+
+button {
+    background-color: #585858;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 31px;
+    height: 130px;
+    width: 130px;
+    box-shadow: 0 2px 4px darkslategray;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+}
+
+.func-button button {
+    background-color: orange;
+}
