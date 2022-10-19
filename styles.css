@@ -75,7 +75,8 @@ button {
 }
 
 .btn-clear:active,
-.btn-delete:active {
+.btn-delete:active,
+.btn-equals:active {
     background-color: rgb(255, 223, 163);
 }
 

@@ -7,6 +7,10 @@ const deleteButton = document.querySelector('.btn-delete');
 const clearButton = document.querySelector('.btn-clear');
 const prevNumber = document.querySelector('.prevNumber');
 const newNumber = document.querySelector('.newNumber');
+const addition = document.getElementById('add')
+const subtraction = document.getElementById('substract')
+const multi = document.getElementById('multi')
+const divi = document.getElementById('divide')
 
 // Global variables
 
@@ -40,15 +44,12 @@ function operate (operator, numOne, numTwo) {
             break;
         case '-':
             substract(numOne, numTwo);
-            calcValue = substract(numOne, numTwo);
             break;
         case '×':
             multiply(numOne, numTwo);
-            calcValue = multiply(numOne, numTwo);
             break;
         case '÷':
             divide(numOne, numTwo);
-            calcValue = divide(numOne, numTwo);
     }
 }
 
@@ -146,6 +147,7 @@ equalsButton.addEventListener('click', () => {
     prevNum = prevNumber.innerText;
     newNum = newNumber.innerText;
     operate(operator, prevNum, newNum)
+    prevNumber.innerText = '';
 })
 
 deleteButton.addEventListener('click', () => {
@@ -176,24 +178,54 @@ window.addEventListener('keydown', e => {
     )
     {   
         numberClick(e.key)
+        for(let i=0; i<numberButtons.length; i++){
+            if(e.key == numberButtons[i].innerText){
+                numberButtons[i].style.backgroundColor = 'rgb(133, 133, 133)'
+            }
+        }
     }
-    if(e.key == '+' || e.key == '-'){
+    if(e.key == '+'){
         operationClick(e.key)
+        resetOperationColors()
+        addition.style.backgroundColor = 'rgb(255, 223, 163)';
         
+    } else if(e.key == '-'){
+        operationClick(e.key)
+        resetOperationColors()
+        subtraction.style.backgroundColor = 'rgb(255, 223, 163)';
     } else if (e.key == '*') {
         operationClick('×')
+        resetOperationColors()
+        multi.style.backgroundColor = 'rgb(255, 223, 163)';
     } else if(e.key == '/') {
         operationClick('÷')
+        resetOperationColors()
+        divi.style.backgroundColor = 'rgb(255, 223, 163)';
     } else if(e.key == '=' || e.key == 'Enter') {
         resetOperationColors()
         prevNum = prevNumber.innerText;
         newNum = newNumber.innerText;
         operate(operator, prevNum, newNum)
+        equalsButton.style.backgroundColor = 'rgb(255, 223, 163)';
+        prevNumber.innerText = '';
     } else if(e.key == 'Backspace') {
         backspace(newNumber.innerText);
+        deleteButton.style.backgroundColor = 'rgb(255, 223, 163)';
     } else if(e.key == 'Escape' || e.key == ' ') {
         resetOperationColors()
         clear();
         resetOperations();
+        clearButton.style.backgroundColor = 'rgb(255, 223, 163)';
     }
 }) 
+
+
+window.addEventListener('keyup', e => {
+    numberButtons.forEach(button => {
+        button.style.backgroundColor = '#585858'
+    })
+    equalsButton.style.backgroundColor = 'orange'
+    deleteButton.style.backgroundColor = 'orange'
+    clearButton.style.backgroundColor = 'orange'
+})
+
