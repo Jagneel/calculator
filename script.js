@@ -21,19 +21,44 @@ clear();
 
 // Arithmetic functions
 function add (numOne, numTwo) {
-    newNumber.innerText = +numOne + +numTwo;
-}
+    let compute = newNumber.innerText = +numOne + +numTwo;
+    compute = compute.toString();
+    if(compute.length > 15) {
+        compute = compute.slice(0, 15)
+        newNumber.innerText = compute
+    } 
+    console.log(compute)
+}   
 
 function substract (numOne, numTwo) {
-    newNumber.innerText = +numOne - +numTwo;
+    let compute = newNumber.innerText = +numOne - +numTwo;
+    compute = compute.toString();
+    if(compute.length > 15) {
+        compute = compute.slice(0, 15)
+        newNumber.innerText = compute
+    } 
+    console.log(compute)
 }
 
 function multiply (numOne, numTwo) {
-    newNumber.innerText = +numOne * +numTwo;
+    let compute = newNumber.innerText = +numOne * +numTwo;
+    compute = compute.toString();
+    console.log(compute)
+    if(compute.length > 15) {
+        compute = compute.slice(0, 15)
+        newNumber.innerText = compute
+    } 
 }
 
 function divide (numOne, numTwo) {
-    newNumber.innerText = +numOne / +numTwo;
+    let compute = newNumber.innerText = +numOne / +numTwo;
+    compute = compute.toString();
+    if(compute.length > 15) {
+        compute = compute.slice(0, 15)
+        newNumber.innerText = compute
+    } 
+    console.log(compute)
+    
 }
 
 // Operator function
@@ -78,28 +103,34 @@ function chooseOperation(operation) {
 }
 
 function updateDisplay() {
-    newNumber.innerText 
+        newNumber.innerText 
 }
 
+// Make all operation buttons clickable
 function resetOperations(){
     operationButtons.forEach((mathButton) => {
         mathButton.removeAttribute('disabled')
     });
 }
 
+// Turn operation buttons back to orange
 function resetOperationColors(){
     operationButtons.forEach(button => button.style.backgroundColor = 'orange')
 }
 
+// Reusable function for when numbers are clicked
 function numberClick (button) {
     resetOperations();
     resetOperationColors()
     prevNumber.setAttribute('hidden', true);
-    newNumber.removeAttribute('hidden');
-    appendNumber(button);
+    newNumber.removeAttribute('hidden');1
+    if(newNumber.innerText.length < 15) {
+        appendNumber(button);
+    }
     updateDisplay();
 } 
 
+// Reusable function for when operations are clicked
 function operationClick (button) {
     // Move current value to previous value and hide new value
     newNumber.setAttribute('hidden', true);
@@ -118,7 +149,7 @@ function operationClick (button) {
 
 // Button Click Functions
 
-// Number click functions
+// Number on click functions
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         numberClick(button.innerText)
@@ -126,7 +157,7 @@ numberButtons.forEach(button => {
 })
 
 
-// Operation click functions
+// Operation on click functions
 operationButtons.forEach(button => {
     button.addEventListener('click', (e) => {
         // Set colors of selected operation button
@@ -136,7 +167,7 @@ operationButtons.forEach(button => {
         // Run click function
         operationClick(button.innerText);
 
-        // // Disabled currently clicked operation
+        // Disabled currently clicked operation
         const targetOperator = e.target
         targetOperator.setAttribute('disabled', true)
     })
@@ -160,6 +191,8 @@ clearButton.addEventListener('click', () => {
     clear();
     resetOperations();
 })
+
+
 
 // Keyboard functionality
 
@@ -218,7 +251,6 @@ window.addEventListener('keydown', e => {
         clearButton.style.backgroundColor = 'rgb(255, 223, 163)';
     }
 }) 
-
 
 window.addEventListener('keyup', e => {
     numberButtons.forEach(button => {
