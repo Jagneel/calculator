@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    <!-- <link rel="stylesheet" href="./styles.css"> -->
+    <link rel="stylesheet" href="./styles.css">
     <script src="./script.js" defer></script>
 </head>
 <body>
@@ -14,28 +14,35 @@
             <div class="prevNumber"></div>
             <div class="newNumber"></div>
         </section>
-        <section class="all-buttons">
-            <section class="func-button">
-                <button id="clear" class="btn-clear">C</button>
-                <button id="del" class="btn-delete">DEL</button>
-                <button id="divide" class="btn-math">&#xf7</button>
-                <button id="multi" class="btn-math">&#215</button>
-                <button id="substract" class="btn-math">-</button>
-                <button id="add" class="btn-math">+</button>
-                <button id="equals" class="btn-equals">=</button>
-            </section>
-            <section class="numbers">
-                <button class="btn-number">9</button>
-                <button class="btn-number">8</button>
-                <button class="btn-number">7</button>
-                <button class="btn-number">6</button>
-                <button class="btn-number">5</button>
-                <button class="btn-number">4</button>
-                <button class="btn-number">3</button>
-                <button class="btn-number">2</button>
-                <button class="btn-number">1</button>
-                <button class="btn-number">0</button>
-                <button id="decimel" class="btn-number">.</button>
+            <section>
+                <div class="row">
+                    <button id="clear" class="func-button btn-clear flex-grow">C</button>
+                    <button id="del" class="func-button btn-delete">DEL</button>
+                    <button id="divide" class="func-button btn-math">&#xf7</button>
+                </div>
+                <div class="row">
+                    <button class="btn-number">7</button>
+                    <button class="btn-number">8</button>
+                    <button class="btn-number">9</button>
+                    <button id="multi" class="func-button btn-math">&#215</button>
+                </div>
+                <div class="row">
+                    <button class="btn-number">4</button>
+                    <button class="btn-number">5</button>
+                    <button class="btn-number">6</button>
+                    <button id="substract" class="func-button btn-math">-</button>
+                </div>
+                <div class="row">
+                    <button class="btn-number" accesskey="1">1</button>
+                    <button class="btn-number">2</button>
+                    <button class="btn-number">3</button>
+                    <button id="add" class="func-button btn-math">+</button>
+                </div>
+                <div class="row">
+                    <button id="zero" class="btn-number flex-grow">0</button>
+                    <button id="decimel" class="btn-number">.</button>
+                    <button id="equals" class="func-button btn-equals">=</button>
+                </div>
             </section>
         </section>
     </main>

@@ -1,4 +1,5 @@
 // Selectors for html elements
+const allButtons = document.querySelectorAll('button');
 const numberButtons = document.querySelectorAll('.btn-number');
 const operationButtons = document.querySelectorAll('.btn-math');
 const equalsButton = document.querySelector('.btn-equals');
@@ -35,7 +36,7 @@ function divide (numOne, numTwo) {
 function operate (operator, numOne, numTwo) {
     switch(operator){
         case '+':
-            add(numOne, numTwo)
+            add(numOne, numTwo);
             break;
         case '-':
             substract(numOne, numTwo);
@@ -85,16 +86,41 @@ function resetOperations(){
     });
 }
 
+function resetOperationColors(){
+    operationButtons.forEach(button => button.style.backgroundColor = 'orange')
+}
+
+function numberClick (button) {
+    resetOperations();
+    resetOperationColors()
+    prevNumber.setAttribute('hidden', true);
+    newNumber.removeAttribute('hidden');
+    appendNumber(button);
+    updateDisplay();
+} 
+
+function operationClick (button) {
+    // Move current value to previous value and hide new value
+    newNumber.setAttribute('hidden', true);
+    prevNum = prevNumber.innerText;
+    newNum = newNumber.innerText;
+
+    // Calculate two values if both aren't empty, allowing for chaining arithmatic
+    if(prevNum != '' && newNum != ''){
+        prevNum = operate(operator, prevNum, newNum)
+        }
+    // Re-enable all operaiton buttons
+    resetOperations();
+
+    chooseOperation(button);
+}
+
 // Button Click Functions
 
-// Number click functi
+// Number click functions
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-        resetOperations();
-        prevNumber.setAttribute('hidden', true);
-
-        appendNumber(button.innerText);
-        updateDisplay();
+        numberClick(button.innerText)
     })
 })
 
@@ -102,22 +128,21 @@ numberButtons.forEach(button => {
 // Operation click functions
 operationButtons.forEach(button => {
     button.addEventListener('click', (e) => {
-        prevNum = prevNumber.innerText;
-        newNum = newNumber.innerText;
-        if(prevNum != '' && newNum != ''){
-            prevNum = operate(operator, prevNum, newNum)
-            }
-        resetOperations();
+        // Set colors of selected operation button
+        resetOperationColors()
+        e.target.style.backgroundColor = 'rgb(255, 223, 163)';
+
+        // Run click function
+        operationClick(button.innerText);
+
+        // // Disabled currently clicked operation
         const targetOperator = e.target
         targetOperator.setAttribute('disabled', true)
-
-        chooseOperation(button.innerText);
-        
-        // updateDisplay();
     })
 })
 
 equalsButton.addEventListener('click', () => {
+    resetOperationColors()
     prevNum = prevNumber.innerText;
     newNum = newNumber.innerText;
     operate(operator, prevNum, newNum)
@@ -129,7 +154,46 @@ deleteButton.addEventListener('click', () => {
 })
 
 clearButton.addEventListener('click', () => {
+    resetOperationColors()
     clear();
     resetOperations();
 })
 
+// Keyboard functionality
+
+window.addEventListener('keydown', e => {
+    if(e.key == '1' || 
+        e.key == '2' || 
+        e.key == '3' || 
+        e.key == '4' || 
+        e.key == '5' || 
+        e.key == '6' || 
+        e.key == '7' || 
+        e.key == '8' || 
+        e.key == '9' || 
+        e.key == '0' ||
+        e.key == '.'
+    )
+    {   
+        numberClick(e.key)
+    }
+    if(e.key == '+' || e.key == '-'){
+        operationClick(e.key)
+        
+    } else if (e.key == '*') {
+        operationClick('×')
+    } else if(e.key == '/') {
+        operationClick('÷')
+    } else if(e.key == '=' || e.key == 'Enter') {
+        resetOperationColors()
+        prevNum = prevNumber.innerText;
+        newNum = newNumber.innerText;
+        operate(operator, prevNum, newNum)
+    } else if(e.key == 'Backspace') {
+        backspace(newNumber.innerText);
+    } else if(e.key == 'Escape' || e.key == ' ') {
+        resetOperationColors()
+        clear();
+        resetOperations();
+    }
+}) 

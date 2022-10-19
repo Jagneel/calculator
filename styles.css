@@ -1,23 +1,84 @@
+body {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(53, 92, 101);
+    background: radial-gradient(circle, rgba(53, 92, 101, 1) 0%, rgba(11, 18, 32, 1) 89%);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 30%;
+    background-color: rgb(31, 31, 31);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
 .display {
     height: 100px;
-    background-color: black;
+    background-color: rgb(146, 146, 146);
     color: white;
+    font-size: 60px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+
+}
+
+.prevNumber,
+.newNumber {
+    margin: 15px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+}
+
+#clear {
+    flex: 1;
+    border-radius: 15px;
+    margin: 5px 10px;
+}
+
+#zero {
+    flex: 1;
+    border-radius: 15px;
+    margin: 5px 10px;
+
 }
 
 button {
     background-color: #585858;
+    flex-shrink: 3;
     color: white;
     border: none;
     padding: 5px;
+    margin: 5px;
     font-size: 31px;
-    height: 130px;
-    width: 130px;
-    box-shadow: 0 2px 4px darkslategray;
+    min-height: 130px;
+    min-width: 130px;
     cursor: pointer;
     transition: all 0.2s ease;
-    border-radius: 50%;
+    border-radius: 20%;
 }
 
-.func-button button {
+.btn-number:active {
+    background-color: rgb(133, 133, 133);
+}
+
+.btn-clear:active,
+.btn-delete:active {
+    background-color: rgb(255, 223, 163);
+}
+
+section .func-button {
     background-color: orange;
 }
