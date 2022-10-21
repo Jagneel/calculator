@@ -1,4 +1,5 @@
 body {
+    overflow-x: hidden;
     margin-top: 5%;
     display: flex;
     justify-content: center;
@@ -7,16 +8,15 @@ body {
     background: radial-gradient(circle, rgba(53, 92, 101, 1) 0%, rgba(11, 18, 32, 1) 89%);
 }
 
+
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 30%;
     background-color: rgb(31, 31, 31);
     padding: 20px;
     border-radius: 5px;
 }
-
 
 .display {
     height: 100px;
@@ -58,14 +58,15 @@ main {
 
 button {
     background-color: #585858;
-    flex-shrink: 3;
     color: white;
     border: none;
     padding: 5px;
     margin: 5px;
     font-size: 31px;
-    min-height: 130px;
-    min-width: 130px;
+    height: 130px;
+    width: 130px;
+    min-height: 13px;
+    min-width: 13px;
     cursor: pointer;
     transition: all 0.2s ease;
     border-radius: 20%;
@@ -83,4 +84,44 @@ button {
 
 section .func-button {
     background-color: orange;
+}
+
+@media only screen and (max-width: 425px) {
+
+    main {
+        width: 50%;
+        height: 400px;
+        padding: 0 10px;
+    }
+
+    button {
+        height: 50px;
+        width: 50px;
+        font-size: 1em;
+        margin: 2px;
+    }
+
+    .row {
+        justify-content: space-around;
+    }
+
+    .display {
+        height: 50px;
+        font-size: 1em;
+    }
+
+    #clear {
+        flex: 1;
+        border-radius: 10px;
+        margin: 2px;
+
+    }
+
+    #zero {
+        flex: 1;
+        border-radius: 10px;
+        margin: 2px;
+
+
+    }
 }
