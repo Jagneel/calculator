@@ -86,7 +86,7 @@ section .func-button {
     background-color: orange;
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 625px) {
 
     main {
         width: 50%;
